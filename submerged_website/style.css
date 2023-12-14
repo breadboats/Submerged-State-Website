@@ -1,0 +1,357 @@
+
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: #111; /* Dark grey color */
+    font-family: 'Courier New', monospace;
+}
+
+.full-page-header {
+    background: url('header.webp') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh; /* Full height of the viewport */
+    display: flex;
+    justify-content: flex-start; /* Aligns items to the left */
+    padding: 20px; /* Adjust as needed */
+    animation: fadeIn 2s ease-out forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns items to the top */
+}
+
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0.5; 
+        background-color: black; /* Start from black */
+    }
+    to { 
+        opacity: 1; 
+        background-color: transparent; /* End with the image fully visible */
+    }
+}
+
+#header-title {
+    z-index: 2; /* Ensures the text is above the background */
+    color: white; /* Adjust the color if needed for visibility */
+    /* Rest of your styles */
+}
+
+header, footer {
+    background-color: black;
+    color: white;
+    text-align: left;
+    padding: 60px;
+}
+
+h1, footer p {
+    margin: 0;
+    font-size: 2em;
+    font-weight: normal;
+}
+
+
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    0%, 100% { border-color: transparent; }
+    50% { border-color: white; }
+}
+
+
+.typing-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.typing-effect, .typing-effect-subtitle {
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    border-right: 0.2em solid white; /* Consistent line size */
+}
+
+.typing-effect {
+    font-size: 2em;
+    animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+
+.typing-effect-subtitle {
+    font-size: 1em;
+    visibility: hidden; /* Initially hidden */
+    color: white; /* Subtitle color */
+    /* Adjusted animation */
+    animation: typing 3.5s steps(30, end) 3.5s, blink-caret 0.75s step-end 3.5s;
+    animation-fill-mode: forwards;
+}
+
+.text-section {
+    background-color: #111;
+    padding-top: 150px; /* Padding only at the top */
+    padding-right: 0; /* No padding on the right */
+    padding-bottom: 0; /* No padding at the bottom */
+    padding-left: 0; /* No padding on the left */
+    color: white;
+    font-size: 1.3em;
+    text-align: center;
+    width: 100%;
+    margin: 3px 0; /* Adjusted margin */
+}
+
+
+.text-block {
+    margin-bottom: 60px; /* Space between text blocks */
+    max-width: 85%; /* Maximum width of the text block */
+    margin-left: auto; /* Auto margin on the left */
+    margin-right: auto; /* Auto margin on the right */
+    padding: 0 20px; /* Padding inside the text block, adjust as needed */
+}
+
+.middle-section {
+    background-color: #111;
+    height: 50vh; /* half the height of the viewport */
+    display: flex;
+    justify-content: space-around; /* Space out the rectangles */
+    align-items: center; /* Center the rectangles vertically */
+    padding-top: 0px; /* Padding only at the top */
+    padding-bottom: 100px; /* No padding on the right */
+}
+
+.rectangle {
+    background-color: #1a1a1a; /* Darker shade */
+    border-radius: 10px; /* Slightly rounded edges */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7); /* 3D effect with darker shadow */
+    width: 25%; /* Thinner boxes */
+    height: 150px; /* Taller boxes */
+    margin: 0 10px; /* Space between boxes */
+    text-align: center;
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-decoration: none; /* Remove underline from links */
+    padding: 20px;
+    transition: transform 0.5s ease, box-shadow 0.7s ease;
+}
+
+.rectangle:hover {
+    transform: scale(1.03); /* Slightly enlarges the rectangle on hover */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); /* Soft white/grey glow */
+}
+
+.rectangle p {
+    color: white;
+    font-size: 1.5em; /* Smaller text */
+    margin: 0; /* Remove default paragraph margins */
+}
+
+
+.spotlight-section {
+    width: 100vw;
+    height: 100vh; /* Adjust height as needed */
+    background-image: url('iceburg.webp'); /* Replace with your chosen image */
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+}
+
+.mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: hsla(0, 0%, 0%, 0.9);
+    mask-image: radial-gradient(
+      circle at var(--mouse-x) var(--mouse-y),
+      transparent 40px,
+      black 150px
+    );
+    -webkit-mask-image: radial-gradient(
+      circle at var(--mouse-x) var(--mouse-y),
+      transparent 40px,
+      black 150px
+    );
+}
+
+.spotlight-link {
+    position: absolute;
+    font-size: 1.5em; 
+    text-decoration: none;
+    color: white; /* Text color */
+    visibility: hidden; /* Start with links hidden */
+    display: flex; /* Allows the flex layout */
+    align-items: center; /* Centers the text and icon vertically */
+}
+
+.spotlight-link span {
+    padding: 10px 15px; /* Padding around the text */
+    border: 1px solid white; /* Border around the text */
+    border-radius: 5px; /* Rounded corners */
+    display: inline-flex; /* Inline-flex for the text and icon */
+    align-items: center; /* Aligns the text and icon */
+    visibility: visible; /* Make the span visible */
+    opacity: 0; /* Start with span hidden */
+    transition: opacity 0.3s; /* Smooth transition for the hover effect */
+}
+
+.spotlight-link i {
+    margin-left: 10px; /* Space between text and arrow icon */
+    font-size: 0.8em; /* Adjust icon size */
+}
+
+.spotlight-link:hover span {
+    opacity: 1; /* Show the span on hover */
+}
+
+/* Positioning of links */
+#link1 {
+    bottom: 40%; /* Adjust positioning as needed */
+    left: 20%;
+}
+
+#link2 {
+    bottom: 30%;
+    right: 25%;
+}
+
+#link3 {
+    bottom: 20%;
+    left: 40%;
+}
+
+
+footer {
+    font-size: 0.5em;
+    margin-bottom: 60px;
+    text-align: center; /* Center-align the text horizontally */
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Add any additional styling here */
+}
+
+.footer-content p {
+    margin-right: 5px; /* Adjust spacing between text and icons */
+}
+
+.social-icon {
+    color: white;
+    margin-left: 5px; /* Adjust as necessary */
+    font-size: 18px; /* Increase icon size */
+}
+
+
+
+.home-button {
+    font-family: 'Courier New', monospace;
+    color: white; /* Or any color that suits your design */
+    background-color: #111; /* Background color to match your .content div */
+    text-decoration: none; /* Removes the underline from the link */
+    padding: 10px 20px; /* Adjust padding as needed */
+    position: absolute; /* Positions the button relative to its nearest positioned ancestor or to the initial containing block (normally the viewport) */
+    top: 20px; /* Adjust as needed for exact positioning */
+    left: 20px; /* Adjust as needed for exact positioning */
+    z-index: 10; /* Ensures the button is above other elements */
+}
+
+/* Optional: Add a hover effect */
+.home-button:hover {
+    background-color: #444; /* Slightly lighter to indicate interactivity */
+}
+
+
+.content {
+    background-color: #111; /* Dark grey color */
+    color: white; /* White text */
+    padding: 20px; /* Adds padding inside the content area */
+    margin: 20px auto; /* Centers the content and adds margin on top and bottom */
+    font-family: 'Courier New', monospace; /* Consistent with the rest of the site */
+    max-width: 800px; /* Adjusts the maximum width of the content for better readability */
+    line-height: 1.6; /* Improves line spacing for better readability */
+}
+
+.content p {
+    margin-bottom: 20px; /* Adds space after each paragraph */
+}
+
+.timeline {
+    position: relative;
+    margin: 50px auto;
+    padding: 40px 0;
+    width: 90%;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background: white;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-dot {
+    position: absolute;
+    background: white;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    top: 15px;
+    left: 50%; /* Align horizontally with the center of the timeline */
+    margin-left: -6px; /* Half the width of the dot to center it on the line */
+    z-index: 1;
+}
+
+.timeline-date {
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.timeline-content {
+    background: #333; /* Slightly lighter shade for visibility */
+    border-radius: 8px;
+    padding: 15px;
+    color: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 600px) {
+    .timeline-item {
+        width: 100%;
+        padding: 20px 20px;
+        left: 0 !important;
+    }
+
+    .timeline-dot {
+        left: 10px;
+    }
+
+    .timeline-content {
+        padding: 15px;
+    }
+}
