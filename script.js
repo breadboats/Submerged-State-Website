@@ -88,6 +88,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3500);
 });
 
+// Function to open a specific lightbox
+window.openLightbox = function(lightboxId) {
+    const lightbox = document.getElementById(lightboxId);
+    if (lightbox) {
+        lightbox.style.display = "block";
+    }
+};
 
+// Function to close a specific lightbox
+window.closeLightbox = function(lightboxId) {
+    const lightbox = document.getElementById(lightboxId);
+    if (lightbox) {
+        lightbox.style.display = "none";
+    }
+};
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('policy-visualization-container');
+
+    // Example: Create layers representing different aspects of policy design
+    for (let i = 0; i < 5; i++) {
+        const layer = document.createElement('div');
+        layer.classList.add('policy-layer');
+        layer.style.width = `${100 - i * 10}%`;
+        layer.style.height = `${100 - i * 10}%`;
+        layer.style.position = 'absolute';
+        layer.style.left = `${i * 5}%`;
+        layer.style.top = `${i * 5}%`;
+        layer.style.backgroundColor = `rgba(255, 255, 255, ${0.2 + i * 0.15})`;
+        layer.style.border = '1px solid white';
+        layer.style.borderRadius = '5px';
+
+        // Add hover effect
+        layer.addEventListener('mouseenter', () => {
+            layer.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+        });
+        layer.addEventListener('mouseleave', () => {
+            layer.style.backgroundColor = `rgba(255, 255, 255, ${0.2 + i * 0.15})`;
+        });
+
+        container.appendChild(layer);
+    }
+    
+
+
+});
 
 

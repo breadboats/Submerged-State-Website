@@ -118,11 +118,11 @@ h1, footer p {
     justify-content: space-around; /* Space out the rectangles */
     align-items: center; /* Center the rectangles vertically */
     padding-top: 0px; /* Padding only at the top */
-    padding-bottom: 100px; /* No padding on the right */
+    padding-bottom: 150px; /* No padding on the right */
 }
 
 .rectangle {
-    background-color: #1a1a1a; /* Darker shade */
+    background-color: #1a1a1a; /* Darker shade, as a fallback if the image doesn't load */
     border-radius: 10px; /* Slightly rounded edges */
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7); /* 3D effect with darker shadow */
     width: 25%; /* Thinner boxes */
@@ -135,7 +135,31 @@ h1, footer p {
     text-decoration: none; /* Remove underline from links */
     padding: 20px;
     transition: transform 0.5s ease, box-shadow 0.7s ease;
+    position: relative; /* Needed for positioning the overlay and image */
+    overflow: hidden; /* Ensure the border-radius clips the content */
+
+    /* Image as Background */
+    background-image: none; /* Remove any specific image from the generic class */
+    background-size: cover; /* Cover the entire area of the box */
+    background-position: center; /* Center the image within the box */
 }
+
+.rectangle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    transition: background-color 0.5s ease;
+    border-radius: 10px; /* Same as the rectangle */
+}
+
+.rectangle:hover::before {
+    background-color: rgba(0, 0, 0, 0.3); /* Lighter overlay on hover */
+}
+
 
 .rectangle:hover {
     transform: scale(1.03); /* Slightly enlarges the rectangle on hover */
@@ -146,6 +170,21 @@ h1, footer p {
     color: white;
     font-size: 1.5em; /* Smaller text */
     margin: 0; /* Remove default paragraph margins */
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: Adds a semi-transparent background to the text for better readability */
+    padding: 5px 10px; /* Optional: Adds some padding around the text */
+    border-radius: 5px; /* Optional: Rounds the corners of the text background */
+}
+
+.rectangle-one {
+    background-image: url('old_congress.jpg'); /* Replace with the path to your first image */
+}
+
+.rectangle-two {
+    background-image: url('proj_housing.jpg'); /* Replace with the path to your second image */
+}
+
+.rectangle-three {
+    background-image: url('crowd.jpg'); /* Replace with the path to your third image */
 }
 
 
@@ -246,7 +285,6 @@ footer {
     margin-left: 5px; /* Adjust as necessary */
     font-size: 18px; /* Increase icon size */
 }
-
 
 
 .home-button {
@@ -355,3 +393,41 @@ footer {
         padding: 15px;
     }
 }
+
+
+.lightbox {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9); /* Black background with opacity */
+}
+
+.lightbox-content {
+    background-color: #111;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Adjust as needed */
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
